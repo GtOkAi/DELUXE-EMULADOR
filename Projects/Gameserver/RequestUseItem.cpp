@@ -99,6 +99,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 	}
 
 	INT32 itemId = srcItem->Index;
+	 
 #pragma region PAC ITENS
 	if (_volatile == 210)
 	{
@@ -161,7 +162,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 #pragma region POTS
 	else if (_volatile == 1) //0042DE14
 	{
-		for (int i = 0; i < 32; i++)
+		for (int i = 1; i < 32; i++)
 		{
 			if (pMob[clientId].Mobs.Affects[i].Index == 32)
 			{
@@ -929,7 +930,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 		STRUCT_AFFECT* affects = pMob[clientId].Mobs.Affects;
 
 		int affectIndex = -1;
-		for (int i = 0; i < 32; i++)
+		for (int i = 1; i < 32; i++)
 		{
 			if (affects[i].Index == 4 && (affects[i].Value == 4 || affects[i].Value == 5))
 				continue;
@@ -2849,10 +2850,10 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 		}
 #pragma endregion
 #pragma region BAa DE EXPERIaNCIA
-		else if (itemId == 4140 || itemId == 4548 || itemId == 4549)
+		else if (itemId == 4144 || itemId == 4140 || itemId == 4548 || itemId == 4549)
 		{
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 39)
 				{
@@ -2864,7 +2865,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -2876,7 +2877,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			}
 
 			if (slot == -1)
-			{
+			{ 
 				SendItem(clientId, (SlotType)p->SrcType, p->SrcSlot, srcItem);
 
 				return true;
@@ -2903,6 +2904,8 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			GridMulticast_2(pMob[clientId].Target.X, pMob[clientId].Target.Y, (BYTE*)& packet, 0);
 
 			AmountMinus(srcItem);
+
+			printf("\n itemId%d", itemId);
 			return true;
 		}
 #pragma endregion
@@ -2992,7 +2995,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			}
 
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 30)
 				{
@@ -3004,7 +3007,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -3110,7 +3113,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			}
 
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 51)
 				{
@@ -3122,7 +3125,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -3203,7 +3206,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			}
 
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 34)
 				{
@@ -3215,7 +3218,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -3295,7 +3298,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			}
 
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 4)
 				{
@@ -3307,7 +3310,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -3374,7 +3377,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 		else if (itemId >= 3364 && itemId <= 3366)
 		{
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 35)
 				{
@@ -3386,7 +3389,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -4252,7 +4255,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 		else if (itemId == 3313)
 		{
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 35)
 				{
@@ -4264,7 +4267,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -4338,7 +4341,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 			{
 				if (index == 3)
 				{
-					INT32 i = 0;
+					INT32 i = 1;
 					for (; i < 32; i++)
 					{
 						if (pMob[clientId].Mobs.Affects[i].Index == 32) // Cancel
@@ -5615,7 +5618,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 		else if (itemId == 4624)
 		{
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 54)
 				{
@@ -5627,7 +5630,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{
@@ -5662,7 +5665,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 		else if (itemId == 4668)
 		{
 			INT32 slot = -1;
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 59)
 				{
@@ -5674,7 +5677,7 @@ bool CUser::RequestUseItem(PacketHeader* Header)
 
 			if (slot == -1)
 			{
-				for (INT32 i = 0; i < 32; i++)
+				for (INT32 i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 0)
 					{

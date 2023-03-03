@@ -628,7 +628,7 @@ void AppendStructure(pugi::xml_node mob, STRUCT_CHARINFO* charInfo)
 	{
 		auto affects = mob.append_child("affects");
 
-		for (int i = 0; i < 32; i++)
+		for (int i = 1; i < 32; i++)
 		{
 			auto affect = affects.append_child("affect");
 			affect.append_attribute("skillIndex").set_value(i);
@@ -693,7 +693,7 @@ void AppendStructure(pugi::xml_node mob, STRUCT_CHARINFO* charInfo)
 		}
 
 		auto affects = sub.append_child("affects");
-		for (int i = 0; i < 32; i++)
+		for (int i = 1; i < 32; i++)
 		{
 			auto affect = affects.append_child("affect");
 			affect.append_attribute("skillIndex").set_value(i);

@@ -27,7 +27,7 @@ INT32 func_40195B(INT32 clientId, INT32 arg2, INT32 arg3, INT32 arg4)
 
 	else if (arg2 == 47 && pMob[clientId].Mobs.AffectInfo & 0x200)
 	{
-		for (INT32 LOCAL_8 = 0; LOCAL_8 < 32; LOCAL_8++)
+		for (INT32 LOCAL_8 = 1; LOCAL_8 < 32; LOCAL_8++)
 		{
 			if (pMob[clientId].Mobs.Affects[LOCAL_8].Index == 19)
 			{
@@ -955,7 +955,7 @@ bool CUser::RequestAttack(PacketHeader *Header)
 				INT32 needUpdate = 0; // local214
 				INT32 k; // local215
 
-				for (k = 0; k < 32; k++) // 4? kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+				for (k = 1; k < 32; k++) 
 				{
 					INT32 affectId = mob->Mobs.Affects[k].Index; // local216
 					if (affectId == 1 || affectId == 3 || affectId == 5 || affectId == 7 || affectId == 10 || affectId == 12 || affectId == 20 || ((pMob[clientId].Mobs.Player.Learn[0] & 0x80) && affectId == 32) || affectId == 56)
@@ -1168,7 +1168,7 @@ bool CUser::RequestAttack(PacketHeader *Header)
 					STRUCT_AFFECT *affect = pMob[targetIdx].Mobs.Affects;
 
 					int i;
-					for (i = 0; i < 32; i++)
+					for (i = 1; i < 32; i++)
 					{
 						int index = affect[i].Index;
 						if (index == 18 || index == 16 || index == 19 || index == 24)
@@ -1562,7 +1562,7 @@ bool CUser::RequestAttack(PacketHeader *Header)
 
 				if (pMob[targetIdx].Mobs.Player.ClassInfo == 3)
 				{
-					for (int a = 0; a < 32; a++)
+					for (int a = 1; a < 32; a++)
 					{
 						// Remove a imundidade, caso a tenha.
 						if (pMob[targetIdx].Mobs.Affects[a].Index == 19)
@@ -1685,7 +1685,7 @@ bool CUser::RequestAttack(PacketHeader *Header)
 
 			if (chicken)
 			{
-				for (int i = 0; i < 32; i++)
+				for (int i = 1; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 30)
 					{
@@ -2025,7 +2025,7 @@ bool CUser::RequestAttack(PacketHeader *Header)
 		INT32 auxDam = p->Target[iterator].Damage;
 		if (targetIdx < MAX_PLAYER)
 		{
-			for (int i = 0; i < 32; i++)
+			for (int i = 1; i < 32; i++)
 			{
 				if (pMob[targetIdx].Mobs.Affects[i].Index == 18)
 				{
@@ -2157,7 +2157,7 @@ bool CUser::RequestAttack(PacketHeader *Header)
 
 		if (pMob[clientId].Mobs.Player.ClassInfo == 0 && !(pUser[clientId].AttackCount % 5))
 		{
-			for (INT32 i = 0; i < 32; i++)
+			for (INT32 i = 1; i < 32; i++)
 			{
 				if (pMob[clientId].Mobs.Affects[i].Index == 17)
 				{

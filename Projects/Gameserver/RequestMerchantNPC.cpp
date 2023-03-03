@@ -909,7 +909,7 @@ bool CUser::RequestMerchantNPC(PacketHeader *Header)
 			INT32 slotId = GetFirstSlot(clientId, 420);
 			if (slotId != -1)
 			{
-				INT32 i = 0;
+				INT32 i = 1;
 				for (; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 29)
@@ -918,7 +918,7 @@ bool CUser::RequestMerchantNPC(PacketHeader *Header)
 
 				if (i == 32)
 				{
-					for (i = 0; i < 32; i++)
+					for (i = 1; i < 32; i++)
 						if (pMob[clientId].Mobs.Affects[i].Index == 0)
 							break;
 				}

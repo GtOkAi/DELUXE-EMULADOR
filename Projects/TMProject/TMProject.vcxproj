@@ -89,7 +89,7 @@
     <IncludePath>$(IncludePath);$(SolutionDir)Dependencies\Directx\Include;$(SolutionDir)Common\</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)Dependencies\Directx\Lib</LibraryPath>
     <OutDir>D:\WYD CONTEUDO\WYD OVER LITE\Release\WYDClient</OutDir>
-    <TargetName>WYD</TargetName>
+    <TargetName>WYD-d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

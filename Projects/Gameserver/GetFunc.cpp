@@ -116,7 +116,7 @@ void GetCreateMob(int clientId, BYTE *bufPak)
 		p->pAnctCode[i] = GetAnctCode(&eqItem, isUsingCostume);
 	}
 
-	for(int i = 0 ; i < 32; i++)
+	for(int i = 1 ; i < 32; i++)
 	{
 		if(mob->Mobs.Affects[i].Index == 0 || mob->Mobs.Affects[i].Time <= 0)
 		{
@@ -216,7 +216,7 @@ void GetCreateMobTrade(int clientId, BYTE *bufPak)
 		p->pAnctCode[i] = GetAnctCode(&eqItem, isUsingCostume);
 	}
 
-	for(int i = 0 ; i < 32; i++)
+	for(int i = 1 ; i < 32; i++)
 	{
 		if(mob->Mobs.Affects[i].Index == 0 || mob->Mobs.Affects[i].Time <= 0)
 		{
@@ -1731,11 +1731,11 @@ int GetArena(unsigned int x, unsigned int y)
 
 int GetEmptyAffect(int mobId, int buffId)
 {
-	for(int i = 0; i < 32; i++)
+	for(int i = 1; i < 32; i++)
 		if(pMob[mobId].Mobs.Affects[i].Index == buffId)
 			return i;
 
-	for(int i = 0; i < 32; i++)
+	for(int i = 1; i < 32; i++)
 		if(!pMob[mobId].Mobs.Affects[i].Index)
 			return i;
 
@@ -2646,7 +2646,7 @@ long long GetExpApply_2(long long exp, int receiver, int attackerId, bool useBox
 
 	if (useBoxExp)
 	{
-		for (INT32 i = 0; i < 32; i++)
+		for (INT32 i = 1; i < 32; i++)
 		{
 			if (pMob[attackerId].Mobs.Affects[i].Index == 39) // ba� de experi�ncia
 			{

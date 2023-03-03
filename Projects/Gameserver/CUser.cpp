@@ -466,7 +466,7 @@ std::tuple<bool, std::chrono::milliseconds> CUser::CheckIfIsTooFast(const STRUCT
 void CUser::GenerateNewAutoTradeTime()
 {
 	bool hasPotion = false;
-	for (int i = 0; i < 32; i++)
+	for (int i = 1; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 59)
 		{

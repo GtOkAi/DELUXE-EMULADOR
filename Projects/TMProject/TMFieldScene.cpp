@@ -7129,8 +7129,8 @@ int TMFieldScene::FrameMove(unsigned int dwServerTime)
 				{
 					if (!i)
 						m_pAffect[0]->SetTextColor(0xFF000000);
-
-					m_pAffect[i]->SetText((char*)"    0", 0);
+					 
+					m_pAffect[i]->SetText((char*)"ON", sTime); 
 					m_pAffectL[i]->SetVisible(0);
 				}
 
@@ -14118,7 +14118,8 @@ void TMFieldScene::SetMyHumanExp(long long unExp, int nFakeExp)
 	if (nExp >= 0 && BASE_Get3DTo2DPos(m_pMyHuman->m_vecPosition.x, m_pMyHuman->m_fHeight + 1.0f, m_pMyHuman->m_vecPosition.y, &nTX, &nTY))
 	{
 		char szStr[128]{};
-		sprintf(szStr, "Exp +%d", static_cast<unsigned int>(nExp));
+		//exp que sobe na tela
+		sprintf(szStr, "+ %d +", static_cast<unsigned int>(nExp));
 
 		m_pExtraContainer->AddChild(new TMFont3(szStr, nTX, nTY + (int)(RenderDevice::m_fHeightRatio * 80.0f), 0xFFFF8866, 0.5f, 0, 1, 1200, 0, 1));
 
@@ -14126,7 +14127,7 @@ void TMFieldScene::SetMyHumanExp(long long unExp, int nFakeExp)
 		if (!m_bShowExp)
 		{
 			if (m_pChatListnotice)
-				m_pChatListnotice->AddItem(new SListBoxItem(szStr, 0xFFCCAAFF, 0.0f, 0.0f, 300.0f, 16.0f, 0, 0x77777777, 1, 0));
+				m_pChatListnotice->AddItem(new SListBoxItem(szStr, 0xFFCCAAFF, 0.0f, 0.0f, 300.0f, -50.0f, 0, 0x77777777, 1, 0));
 		}
 	}
 	if (nFExp > 0 && BASE_Get3DTo2DPos(m_pMyHuman->m_vecPosition.x, m_pMyHuman->m_fHeight + 1.0f, m_pMyHuman->m_vecPosition.y, &nTX, &nTY))

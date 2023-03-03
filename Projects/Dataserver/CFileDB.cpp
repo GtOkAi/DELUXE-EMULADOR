@@ -1647,7 +1647,7 @@ INT32 CFileDB::ProcessMessage(char *msg, INT32 conn)
 				SendDBSignal(conn, p->Header.ClientId, 0xFDF);
 
 		}
-		printf("\n num %s - SecondPass %s", p->num, Account[index].Account.SecondPass);
+		//printf("\n num %s - SecondPass %s", p->num, Account[index].Account.SecondPass);
 	}
 	break;
 	/*

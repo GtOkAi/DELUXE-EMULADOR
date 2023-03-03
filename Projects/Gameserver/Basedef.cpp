@@ -2765,7 +2765,7 @@ void MobKilled(int arg1, int arg2, int arg3, int arg4)
 
 				SetReqHp(arg1);
 
-				for (int iAffect = 0; iAffect < 32; iAffect++)
+				for (int iAffect = 1; iAffect < 32; iAffect++)
 				{
 					if (pMob[arg1].Mobs.Affects[iAffect].Index == 32)
 					{
@@ -4652,7 +4652,7 @@ void MobKilled(int arg1, int arg2, int arg3, int arg4)
 	if (sServer.DropArea.Status && pUser[arg2].DropEvent.IsValid)
 	{
 		bool hasPotion = false;
-		for (int i = 0; i < 32; i++)
+		for (int i = 1; i < 32; i++)
 		{
 			if (pMob[arg2].Mobs.Affects[i].Index == 59)
 			{
@@ -4825,7 +4825,7 @@ void DoRemoveHide(INT32 clientId)
 	if(clientId <= 0 || clientId >= MAX_PLAYER)
 		return;
 
-	for (INT32 i = 0; i < 32; i++)
+	for (INT32 i = 1; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 28)
 		{
@@ -4843,7 +4843,7 @@ void DoRemovePossuido(INT32 clientId)
 	if (clientId <= 0 || clientId >= MAX_PLAYER)
 		return;
 
-	for (INT32 i = 0; i < 32; i++)
+	for (INT32 i = 1; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 24)
 		{

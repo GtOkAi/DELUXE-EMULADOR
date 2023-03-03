@@ -380,7 +380,7 @@ bool CUser::RequestAction(PacketHeader *Header)
 		}
 	}
 	 
-	printf("Pacote recebido. Posicao: %hux %huy\n", p->Destiny.X, p->Destiny.Y);
+	//printf("Pacote recebido. Posicao: %hux %huy\n", p->Destiny.X, p->Destiny.Y);
  
 
 	return true;

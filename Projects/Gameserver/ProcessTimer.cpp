@@ -210,7 +210,7 @@ void ProcessSecTimer()
 				continue;
 
 			INT32 has = -1;
-			for (INT32 t = 0; t < 32; t++)
+			for (INT32 t = 1; t < 32; t++)
 			{
 				if (pMob[i].Mobs.Affects[t].Index == 56)
 				{
@@ -1162,7 +1162,7 @@ void ProcessSecTimer()
 						packet.Target[i].Damage = (packet.Target[i].Damage << 1) / 5;
 
 					INT32 auxDam = packet.Target[i].Damage;
-					for (int t = 0; t < 32; t++)
+					for (int t = 1; t < 32; t++)
 					{
 						if (pMob[mobId].Mobs.Affects[t].Index == 18)
 						{
@@ -1399,7 +1399,7 @@ void ProcessSecTimer()
 				INT32 auxDam = LOCAL_175.Target.Damage;
 				if (auxDam > 0)
 				{
-					for (int i = 0; i < 32; i++)
+					for (int i = 1; i < 32; i++)
 					{
 						if (pMob[LOCAL_164].Mobs.Affects[i].Index == 18)
 						{
