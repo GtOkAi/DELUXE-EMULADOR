@@ -1970,8 +1970,12 @@ constexpr int GUARDIAN_TOWER_RED = 383;
 #define _NN_Cant_Summon_Dead_Person 48
 #define _NN_Summon_Not_Allowed_Here 49
 #define _NN_Too_High_Level_To_Summon 50
-#define _SN_Summoned_By_S 52
+#define _SN_Summoned_By_S 52 
+#define _NN_3_Quarters_Bonus 54
+#define _NN_2_Quarters_Bonus 55
+#define _NN_1_Quarters_Bonus 56
 #define _SS_Champion_And_Challanger 57
+
 #define _SN_No_Challanger 58
 #define _SN_Winner_Is 59
 #define _NN_Gather_7_Clistals 62

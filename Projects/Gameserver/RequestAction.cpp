@@ -19,7 +19,7 @@ bool CUser::RequestAction(PacketHeader *Header)
 	{
 		SendHpMode(clientId);
 
-		Log(clientId, LOG_INGAME, "Tentativa de mover enquanto morto. Posi��o: %ux %uy", pMob[clientId].Target.X, pMob[clientId].Target.Y);
+		Log(clientId, LOG_INGAME, "Tentativa de mover enquanto morto. Posição: %ux %uy", pMob[clientId].Target.X, pMob[clientId].Target.Y);
 		return true;
 	}
 
@@ -116,7 +116,7 @@ bool CUser::RequestAction(PacketHeader *Header)
 		//AddCrackError(clientId, 5, 4);
 
 		std::stringstream str;
-		str << "Informa��es do pacote:\n";
+		str << "Informações do pacote:\n";
 		str << "MoveType: " << p->MoveType << "\n";
 		str << "MoveSpeed: " << p->MoveSpeed << "\n";
 		str << "DestinyX: " << p->Destiny.X << "\n";

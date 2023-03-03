@@ -1,4 +1,4 @@
-#include "cServer.h"
+﻿#include "cServer.h"
 #include "Basedef.h"
 #include "SendFunc.h"
 #include "GetFunc.h"
@@ -2765,7 +2765,7 @@ void MobKilled(int arg1, int arg2, int arg3, int arg4)
 
 				SetReqHp(arg1);
 
-				for (int iAffect = 1; iAffect < 32; iAffect++)
+				for (int iAffect = 0; iAffect < 32; iAffect++)
 				{
 					if (pMob[arg1].Mobs.Affects[iAffect].Index == 32)
 					{
@@ -2776,7 +2776,7 @@ void MobKilled(int arg1, int arg2, int arg3, int arg4)
 					}
 				}
 
-				SendClientMessage(arg1, "Voca possui %d vidas restantes", pMob[arg1].Lifes);
+				SendClientMessage(arg1, "Você possui %d vidas restantes", pMob[arg1].Lifes);
 				SendScore(arg1);
 
 				Log(arg1, LOG_INGAME, "Revivido dentro da area da Guerra. Vidas restantes: %d", pMob[arg1].Lifes);
@@ -2861,7 +2861,7 @@ void MobKilled(int arg1, int arg2, int arg3, int arg4)
 	LOCAL_13.killed = arg1;
 	LOCAL_13.killer = arg2;
 	LOCAL_13.Hold = static_cast<int>(pMob[arg2].Mobs.Hold);
-	LOCAL_13.Exp = pMob[arg2].Mobs.Player.Exp;
+	LOCAL_13.Exp = pMob[arg2].Mobs.Player.Exp; 
 
 	pMob[arg1].Mobs.Player.Status.curHP = 0;
 
@@ -4652,7 +4652,7 @@ void MobKilled(int arg1, int arg2, int arg3, int arg4)
 	if (sServer.DropArea.Status && pUser[arg2].DropEvent.IsValid)
 	{
 		bool hasPotion = false;
-		for (int i = 1; i < 32; i++)
+		for (int i = 0; i < 32; i++)
 		{
 			if (pMob[arg2].Mobs.Affects[i].Index == 59)
 			{
@@ -4825,7 +4825,7 @@ void DoRemoveHide(INT32 clientId)
 	if(clientId <= 0 || clientId >= MAX_PLAYER)
 		return;
 
-	for (INT32 i = 1; i < 32; i++)
+	for (INT32 i = 0; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 28)
 		{
@@ -4843,7 +4843,7 @@ void DoRemovePossuido(INT32 clientId)
 	if (clientId <= 0 || clientId >= MAX_PLAYER)
 		return;
 
-	for (INT32 i = 1; i < 32; i++)
+	for (INT32 i = 0; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 24)
 		{

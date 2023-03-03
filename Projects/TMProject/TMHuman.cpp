@@ -3873,6 +3873,7 @@ int TMHuman::OnPacketIllusion(PacketHeader* pStd)
     }
     else
     {
+        //faz animação do level up
         SetAnimation(ECHAR_MOTION::ECMOTION_LEVELUP, 0);
         if (!m_cHide)
         {
@@ -3886,6 +3887,8 @@ int TMHuman::OnPacketIllusion(PacketHeader* pStd)
                     1);
 
                 pScene->m_pEffectContainer->AddChild(pPortal);
+                 
+             
             }
         }
     }

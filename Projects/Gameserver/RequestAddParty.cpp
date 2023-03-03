@@ -47,7 +47,7 @@ bool CUser::RequestAddParty(PacketHeader *Header)
 
 		if(has)
 		{
-			SendClientMessage(clientId, "O outro jogador ja � l�der de um grupo.");
+			SendClientMessage(clientId, "O outro jogador ja é líder de um grupo.");
 
 			return true;
 		}

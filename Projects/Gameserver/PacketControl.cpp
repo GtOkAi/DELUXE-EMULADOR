@@ -10,7 +10,7 @@ bool PacketControl(BYTE* pBuffer, INT32 size)
 	PacketHeader *header = (PacketHeader*)pBuffer;
 
 	int clientId = header->ClientId;
-
+	//printf("\n header->PacketId) %X", header->PacketId);
 	switch (header->PacketId)
 	{
 	

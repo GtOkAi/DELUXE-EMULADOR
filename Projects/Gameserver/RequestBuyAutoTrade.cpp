@@ -95,7 +95,7 @@ bool CUser::RequestBuyAutoTrade(PacketHeader *Header)
 
 	if(itemPrice <= 1000) 
 	{
-		SendClientMessage(clientId, "Este item esta em modo demonstra��o");
+		SendClientMessage(clientId, "Este item esta em modo demonstração");
 
 		return true;
 	}

@@ -19,8 +19,8 @@ TransBonus pTransBonus[5] =
 	{110,130,    90,105,    95,105,   1,0,   20}, // Lobo 
 	{90,105,     100,110,   110,165,   0,0,   0}, // Urso
 	{108,120,    105,115,   100,140,   1,0,   20}, // Astaroth 
-	{115,125,    110,135,   105,130,   0,0,   20}, // Tit�
-	{105,122,    110,120,   105,145,   1,0,   20} // �den
+	{115,125,    110,135,   105,130,   0,0,   20}, // Titã
+	{105,122,    110,120,   105,145,   1,0,   20} // Éden
 };
 
 INT32 g_pClanTable[9][9] = {
@@ -506,7 +506,7 @@ void CMob::GetCurrentScore(int clientId)
 	GetCurScore(this, Mobs.Affects);
 
 	//-------------
-	// 00412589 at� 0041261E n�o descompilado, � a parte de HP, mas ja tem a fun��o GetCurrentHP(); e MP();
+	// 00412589 até 0041261E não descompilado, é a parte de HP, mas ja tem a função GetCurrentHP(); e MP();
 	if (Mobs.Player.Status.curHP > Mobs.Player.Status.maxHP)
 		Mobs.Player.Status.curHP = Mobs.Player.Status.maxHP;
 
@@ -875,7 +875,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 				magic += 3;
 				break;
 
-			case 6: // po��o kappa
+			case 6: // poção kappa
 				attack += 75;
 				magic += 1;
 				break;
@@ -905,7 +905,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 			_des *= static_cast<INT32>(fValue);
 			break;
 		}
-		case 6: // po��o atk
+		case 6: // poção atk
 		{
 			float fValue = (100.0f + master) / 100.0f; // local32
 
@@ -1012,7 +1012,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 
 			break;
 		}
-		case 16: // transforma��o
+		case 16: // transformação
 		{
 			INT32 transInfo = master - 1; // local50
 			transformation = transInfo;
@@ -1150,7 +1150,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 			break;
 		}
 		case 38: // controle de mana - 18
-		{ // alterado para a skill Troca de Esp�ritos
+		{ // alterado para a skill Troca de Espíritos
 			INT32 mp = ((mob->Status.Level + value) >> 1) + maxMP; // local61
 
 			maxHP += mp;
@@ -1162,7 +1162,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 			player->Mobs.AffectInfo |= 0x02;
 			break;
 		}
-		case 21: // medita��o
+		case 21: // meditação
 		{
 			defense -= (value / 3) + 10; // local62
 
@@ -1188,7 +1188,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 			defense += acIncress;
 		}
 		break;
-		case 25: // prote��o elemental
+		case 25: // proteção elemental
 		{
 			INT32 sum = (value >> 2) + master;
 			if ((player->Mobs.Player.Learn[0] & 128))
@@ -1204,7 +1204,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 			player->Mobs.Player.AffectInfo.Value |= 0x10;
 		}
 		break;
-		case 26: // evas�o
+		case 26: // evasão
 		{
 			player->Mobs.Player.AffectInfo.Value |= 0x20;
 		}
@@ -1334,7 +1334,7 @@ void GetCurScore(CMob *player, STRUCT_AFFECT *affect)
 			incMp += 20;
 		}
 		break;
-		case 35: // Po��o do Vigor
+		case 35: // Poção do Vigor
 		{
 			if (value == 2)
 			{
@@ -1999,7 +1999,7 @@ void GenerateMob(int arg1, int arg2, int arg3)
 		sServer.KingdomBattle.Info[index].isTowerAlive = true;
 		sServer.KingdomBattle.Info[index].Status = false;
 
-		SendNotice("A Torre Guardi� do reino %s nasceu", arg1 == GUARDIAN_TOWER_BLUE ? "blue" : "red");
+		SendNotice("A Torre Guardiã do reino %s nasceu", arg1 == GUARDIAN_TOWER_BLUE ? "blue" : "red");
 	}
 	else if (arg1 == 8 || arg1 == 9)
 	{
@@ -3269,7 +3269,7 @@ INT32 CMob::CheckGetLevel()
 					SendItem(clientId, SlotType::Equip, 1, cyt);
 				}
 				else
-					Log(clientId, LOG_INGAME, "%s n�o recebeu o adicional do level %d por n�o ter cythera equipada no personagem", ItemList[cyt->Index].Name, Mobs.Player.bStatus.Level);
+					Log(clientId, LOG_INGAME, "%s não recebeu o adicional do level %d por n�o ter cythera equipada no personagem", ItemList[cyt->Index].Name, Mobs.Player.bStatus.Level);
 			}
 		}
 
@@ -3306,7 +3306,13 @@ INT32 CMob::CheckQuarter(long long expEarned)
 			{
 				needRefresh = TRUE;
 
-				SendClientMessage(clientId, "Adquiriu %d/4 de b�nus.", i);
+				if(i == 1)
+					SendClientMessage(clientId, g_pLanguageString[56] );
+				else if (i == 2)
+					SendClientMessage(clientId, g_pLanguageString[55]);
+				else 
+					SendClientMessage(clientId, g_pLanguageString[54]);
+				  
 				break;
 			}
 		}

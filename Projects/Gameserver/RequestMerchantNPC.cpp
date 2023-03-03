@@ -1,4 +1,4 @@
-#include "cServer.h"
+﻿#include "cServer.h"
 #include "Basedef.h"
 #include "SendFunc.h"
 #include "GetFunc.h"
@@ -909,7 +909,7 @@ bool CUser::RequestMerchantNPC(PacketHeader *Header)
 			INT32 slotId = GetFirstSlot(clientId, 420);
 			if (slotId != -1)
 			{
-				INT32 i = 1;
+				INT32 i = 0;
 				for (; i < 32; i++)
 				{
 					if (pMob[clientId].Mobs.Affects[i].Index == 29)
@@ -918,7 +918,7 @@ bool CUser::RequestMerchantNPC(PacketHeader *Header)
 
 				if (i == 32)
 				{
-					for (i = 1; i < 32; i++)
+					for (i = 0; i < 32; i++)
 						if (pMob[clientId].Mobs.Affects[i].Index == 0)
 							break;
 				}
@@ -2794,7 +2794,7 @@ bool CUser::RequestMerchantNPC(PacketHeader *Header)
 #pragma endregion
 #pragma region NPCS AREA TREINO
 		else if (npcType >= 40 && npcType <= 43)
-		{
+		{ 
 			INT32 LOCAL_535 = npcType - 40;
 			if(pMob[clientId].Mobs.Player.bStatus.Level > 40 && pMob[clientId].Mobs.Player.bStatus.Level < 1000)
 				return true;
@@ -2803,7 +2803,6 @@ bool CUser::RequestMerchantNPC(PacketHeader *Header)
 			if(pMob[clientId].Mobs.Player.QuestInfo.Value & questId)
 			{
 				SendSay(npcId, g_pLanguageString[_NN_NewbieQuest_Already1 + (LOCAL_535 * 4)]);
-			
 				return true;
 			}
 

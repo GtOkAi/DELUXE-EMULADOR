@@ -358,9 +358,9 @@ void CUser::LogEquipsAndInventory(bool force) const
 	std::stringstream strItems;
 	if (Status == USER_SELCHAR)
 	{
-		strItems << "[INFORMA��ES DA CONTA]\n";
-		strItems << "Personagem na sele��o de personagem. Sem informa��es no momento\n";
-		strItems << "Tempo online at� o momento: "
+		strItems << "[INFORMAÇÕES DA CONTA]\n";
+		strItems << "Personagem na seleção de personagem. Sem informações no momento\n";
+		strItems << "Tempo online até o momento: "
 			<< std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 86400) << " dias e "
 			<< std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 3600) % 24
 			<< ":" << std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 60) % 60
@@ -369,18 +369,18 @@ void CUser::LogEquipsAndInventory(bool force) const
 	else if(Status == USER_PLAY)
 	{
         auto evolution = pMob[clientId].Mobs.Player.GetEvolution();
-		strItems << "[INFORMA��ES DA CONTA]\n";
+		strItems << "[INFORMAÇÕES DA CONTA]\n";
 		strItems << "Personagem online: " << pMob[clientId].Mobs.Player.Name << "\n";
 		strItems << "Gold atual: " << pMob[clientId].Mobs.Player.Gold << "\n";
 		strItems << "Level atual: " << pMob[clientId].Mobs.Player.bStatus.Level << "\n";
-		strItems << "Experi�ncia atual: " << pMob[clientId].Mobs.Player.Exp << "\n";
-		strItems << "Evolu��o atual: " << GetEvolutionName(evolution) << "\n";
-		strItems << "Tempo online at� o momento: "
+		strItems << "Experiência atual: " << pMob[clientId].Mobs.Player.Exp << "\n";
+		strItems << "Evolução atual: " << GetEvolutionName(evolution) << "\n";
+		strItems << "Tempo online até o momento: "
 			<< std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 86400) << " dias e "
 			<< std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 3600) % 24
 			<< ":" << std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 60) % 60
 			<< ":" << std::setfill('0') << std::setw(2) << (pUser[clientId].Time % 60) << " horas\n";
-		strItems << "Posi��o atual: " << pMob[clientId].Target.X << "x " << pMob[clientId].Target.Y << "y\n\n";
+		strItems << "Posição atual: " << pMob[clientId].Target.X << "x " << pMob[clientId].Target.Y << "y\n\n";
 		strItems << "Pontos NT: " << ((int)pMob[clientId].Mobs.PesaEnter) << "\n";
 		strItems << "Entradas Hall: " << pMob[clientId].Mobs.HallEnter << "\n";
 		strItems << "Info: " << pMob[clientId].Mobs.Info.Value << "\n";
@@ -397,9 +397,9 @@ void CUser::LogEquipsAndInventory(bool force) const
         {
             const auto& sub = pMob[clientId].Mobs.Sub;
             strItems << "\n[PEDRA MISTERIOSA]\n";
-            strItems << "Evolu��o: " << GetEvolutionName(static_cast<eClass>(sub.Equip[0].EFV2)) << "\n";
+            strItems << "Evolução: " << GetEvolutionName(static_cast<eClass>(sub.Equip[0].EFV2)) << "\n";
             strItems << "Level atual: " << sub.SubStatus.Level << "\n";
-            strItems << "Experi�ncia atual: " << sub.Exp << "\n";
+            strItems << "Experiência atual: " << sub.Exp << "\n";
             strItems << "Learn: " << sub.Learn << "\n";
             strItems << "SecLearn: " << sub.SecLearn << "\n";
             strItems << "Info: " << sub.Info.Value << "\n";
@@ -430,9 +430,9 @@ void CUser::LogEquipsAndInventory(bool force) const
 	}
 	else
 	{
-		strItems << "[INFORMA��ES DA CONTA]\n";
-		strItems << "Personagem com status \"" << Status << "\". Sem informa��es no momento\n";
-		strItems << "Tempo online at� o momento: "
+		strItems << "[INFORMAÇÕES DA CONTA]\n";
+		strItems << "Personagem com status \"" << Status << "\". Sem informações no momento\n";
+		strItems << "Tempo online até o momento: "
 			<< std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 86400) << " dias e "
 			<< std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 3600) % 24
 			<< ":" << std::setfill('0') << std::setw(2) << (pUser[clientId].Time / 60) % 60
@@ -466,7 +466,7 @@ std::tuple<bool, std::chrono::milliseconds> CUser::CheckIfIsTooFast(const STRUCT
 void CUser::GenerateNewAutoTradeTime()
 {
 	bool hasPotion = false;
-	for (int i = 1; i < 32; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 59)
 		{

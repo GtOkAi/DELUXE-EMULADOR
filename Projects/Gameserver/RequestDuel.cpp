@@ -34,7 +34,7 @@ bool CUser::RequestDuel(PacketHeader *Header)
 	{
 //		if(pMob[LOCAL_22].Mobs.MedalId != 509 || pMob[clientId].Mobs.MedalId != 509)
 		{
-			SendClientMessage(clientId, "Dispon�vel apenas para l�deres de guild");
+			SendClientMessage(clientId, "Disponível apenas para líderes de guild");
 
 			return true;
 		}

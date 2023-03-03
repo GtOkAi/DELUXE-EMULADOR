@@ -250,7 +250,7 @@ bool CUser::RequestTrade(PacketHeader *Header)
 
 	if (pUser[clientId].AllStatus.PK)
 	{
-		SendClientMessage(clientId, "N�o � poss�vel trocar com o modo PvP ativo");
+		SendClientMessage(clientId, "Não é possível trocar com o modo PvP ativo");
 		
 		RemoveTrade(opponentId);
 		RemoveTrade(clientId);
@@ -268,7 +268,7 @@ bool CUser::RequestTrade(PacketHeader *Header)
 
 	if (pUser[clientId].AllStatus.Whisper)
 	{
-		SendClientMessage(clientId, "N�o � poss�vel trocar com o chat desativado");
+		SendClientMessage(clientId, "Não é possível trocar com o chat desativado");
 
 		RemoveTrade(opponentId);
 		RemoveTrade(clientId);
@@ -320,8 +320,8 @@ bool CUser::RequestTrade(PacketHeader *Header)
 		*/
 		if (msg->Item[i].Index && GetItemAbility(&msg->Item[i], EF_NOTRADE))
 		{
-			SendClientMessage(clientId, "Este item n�o pode ser trocado.");
-			SendClientMessage(opponentId, "Este item n�o pode ser trocado.");
+			SendClientMessage(clientId, "Este item não pode ser trocado.");
+			SendClientMessage(opponentId, "Este item não pode ser trocado.");
 
 			RemoveTrade(clientId);
 			if (pUser[opponentId].Trade.ClientId == clientId)

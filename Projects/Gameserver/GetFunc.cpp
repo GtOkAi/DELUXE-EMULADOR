@@ -116,7 +116,7 @@ void GetCreateMob(int clientId, BYTE *bufPak)
 		p->pAnctCode[i] = GetAnctCode(&eqItem, isUsingCostume);
 	}
 
-	for(int i = 1 ; i < 32; i++)
+	for(int i = 0 ; i < 32; i++)
 	{
 		if(mob->Mobs.Affects[i].Index == 0 || mob->Mobs.Affects[i].Time <= 0)
 		{
@@ -216,7 +216,7 @@ void GetCreateMobTrade(int clientId, BYTE *bufPak)
 		p->pAnctCode[i] = GetAnctCode(&eqItem, isUsingCostume);
 	}
 
-	for(int i = 1 ; i < 32; i++)
+	for(int i = 0 ; i < 32; i++)
 	{
 		if(mob->Mobs.Affects[i].Index == 0 || mob->Mobs.Affects[i].Time <= 0)
 		{
@@ -1731,11 +1731,11 @@ int GetArena(unsigned int x, unsigned int y)
 
 int GetEmptyAffect(int mobId, int buffId)
 {
-	for(int i = 1; i < 32; i++)
+	for(int i = 0; i < 32; i++)
 		if(pMob[mobId].Mobs.Affects[i].Index == buffId)
 			return i;
 
-	for(int i = 1; i < 32; i++)
+	for(int i = 0; i < 32; i++)
 		if(!pMob[mobId].Mobs.Affects[i].Index)
 			return i;
 
@@ -2475,7 +2475,7 @@ long long GetExpApply(long long exp, int attackerId, int targetId)
 	if (ev >= CELESTIAL)
 		attacker += (400 + (ev - ARCH) * 50);
 
-	long long	multiexp = target * 100 / attacker;
+	long long	multiexp = target * 10 / attacker;
 	if(multiexp < 80 && attacker >= 50)
 		multiexp = ((multiexp  - 80) * 2) + 100;
 	else if(multiexp > 200)			
@@ -2646,7 +2646,7 @@ long long GetExpApply_2(long long exp, int receiver, int attackerId, bool useBox
 
 	if (useBoxExp)
 	{
-		for (INT32 i = 1; i < 32; i++)
+		for (INT32 i = 0; i < 32; i++)
 		{
 			if (pMob[attackerId].Mobs.Affects[i].Index == 39) // ba� de experi�ncia
 			{
@@ -3098,7 +3098,7 @@ INT32 GetCompounderDeal(INT32 clientId)
 	SendItem(clientId, SlotType::Inv, slotId, &pMob[clientId].Mobs.Player.Inventory[slotId]);
 
 	INT32 value = ((Rand() % 5) + 15);
-	Log(clientId, LOG_INGAME, "Utilizado o item Escritura de Composi��o - %d", value);
+	Log(clientId, LOG_INGAME, "Utilizado o item Escritura de Composição - %d", value);
 	return value;
 }
 

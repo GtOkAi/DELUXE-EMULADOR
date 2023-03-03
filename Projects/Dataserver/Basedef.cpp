@@ -1,4 +1,4 @@
-#include "Basedef.h"
+ï»¿#include "Basedef.h"
 #include "Server.h"
 #include <ctime>
 
@@ -25,7 +25,7 @@ BOOL SendTowerWarInfo(BYTE Info)
 
 	memcpy(packet.war, g_pTowerWarState, sizeof stTowerWar * 10);
 
-	// Informa os canais das condições iniciais da guerra e libera o funcionamento
+	// Informa os canais das condiÃ§Ãµes iniciais da guerra e libera o funcionamento
 	for (int i = 0; i < MAX_SERVERGROUP; i++)
 	{
 		if (pUser[i].Mode == USER_EMPTY)
@@ -317,7 +317,7 @@ INT32 DecideWinnerTowerWar()
 
 		INT32 winner = -1;
 
-		// o canal esta avançando no canal 1 e no canal 2 pois o TowerState dos dois canais são diferentes dos
+		// o canal esta avanÃ§ando no canal 1 e no canal 2 pois o TowerState dos dois canais sÃ£o diferentes dos
 		if(g_pTowerWarState[conn].TowerState == otherConn && g_pTowerWarState[otherConn].TowerState == otherConn)
 			winner = conn;
 		else if(g_pTowerWarState[conn].TowerState == conn && g_pTowerWarState[otherConn].TowerState == conn)
@@ -363,8 +363,8 @@ void SetFame(INT32 guildId, INT32 value)
 
 INT32 WriteNPCDonate()
 {
-	// O NPC também é salvo caso  oservidor seja desligado
-	// a quantidade de itens disponíveis na loja continue sempre o mesmo
+	// O NPC tambÃ©m Ã© salvo caso  oservidor seja desligado
+	// a quantidade de itens disponÃ­veis na loja continue sempre o mesmo
 	// Sussa? xD
 	FILE *pFile = nullptr;
 
@@ -628,7 +628,7 @@ void AppendStructure(pugi::xml_node mob, STRUCT_CHARINFO* charInfo)
 	{
 		auto affects = mob.append_child("affects");
 
-		for (int i = 1; i < 32; i++)
+		for (int i = 0; i < 32; i++)
 		{
 			auto affect = affects.append_child("affect");
 			affect.append_attribute("skillIndex").set_value(i);
@@ -693,7 +693,7 @@ void AppendStructure(pugi::xml_node mob, STRUCT_CHARINFO* charInfo)
 		}
 
 		auto affects = sub.append_child("affects");
-		for (int i = 1; i < 32; i++)
+		for (int i = 0; i < 32; i++)
 		{
 			auto affect = affects.append_child("affect");
 			affect.append_attribute("skillIndex").set_value(i);

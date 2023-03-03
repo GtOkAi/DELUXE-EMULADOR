@@ -63,7 +63,7 @@ bool CUser::RequestRecruitMember(PacketHeader *Header)
 	auto diffTime = std::difftime(now_time_t, pMob[userId].Mobs.LastGuildKickOut.GetTMStruct());
  	if (diffTime < KickOutPenalty && diffTime != 0.0)
 	{
-		SendClientMessage(clientId, "O usuario ainda n�o pode ser recrutado por penalidade de sair da guild");
+		SendClientMessage(clientId, "O usuario ainda não pode ser recrutado por penalidade de sair da guild");
 
 		return true;
 	}

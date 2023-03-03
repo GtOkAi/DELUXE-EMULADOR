@@ -1240,6 +1240,7 @@ void SGridControl::BuyItem(int nCellX, int nCellY)
 		{
 			if (nCellX == 4 && nCellY == 7)
 			{
+				//if (pItem->m_pItem->sIndex == 4998)
 				if (pItem->m_pItem->sIndex == 4998)
 				{
 					MSG_RepurchaseItems ReqUndoShop{};

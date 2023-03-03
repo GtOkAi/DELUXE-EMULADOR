@@ -1,4 +1,4 @@
-#include "cServer.h"
+﻿#include "cServer.h"
 #include "Basedef.h"
 #include "GetFunc.h"
 #include "SendFunc.h"
@@ -224,15 +224,15 @@ void SendAffect(int clientId)
 
 	STRUCT_AFFECT *affect = pMob[clientId].Mobs.Affects;
 	// Passa a divina pra frente
-	for (int i = 1; i < 32; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		if (affect[i].Index == 34) // DIVINA
 		{
 			// Buffer temporario para salvar o buff atual
 			STRUCT_AFFECT tmpAffect;
 
-			memcpy(&tmpAffect, &affect[1], sizeof STRUCT_AFFECT);
-			memcpy(&affect[1], &affect[i], sizeof STRUCT_AFFECT);
+			memcpy(&tmpAffect, &affect[0], sizeof STRUCT_AFFECT);
+			memcpy(&affect[0], &affect[i], sizeof STRUCT_AFFECT);
 			memcpy(&affect[i], &tmpAffect, sizeof STRUCT_AFFECT);
 			break;
 		}
@@ -244,7 +244,7 @@ void SendAffect(int clientId)
 	{
 		// Checa se ja ha divina na estrutura
 		int i;
-		for (i = 1; i < 32; i++)
+		for (i = 0; i < 32; i++)
 		{
 			if (affect[i].Index == 34)
 				break;
@@ -254,7 +254,7 @@ void SendAffect(int clientId)
 		// buffado, ent�o buffara sozinho
 		if (i == 32)
 		{
-			for (i = 1; i < 32; i++)
+			for (i = 0; i < 32; i++)
 			{
 				if (affect[i].Index == 0)
 				{
@@ -273,7 +273,7 @@ void SendAffect(int clientId)
 	{
 		// Checa se ja ha sephira na estrutura
 		int i;
-		for (i = 1; i < 32; i++)
+		for (i = 0; i < 32; i++)
 		{
 			if (affect[i].Index == 4)
 				break;
@@ -283,7 +283,7 @@ void SendAffect(int clientId)
 		// buffado, ent�o buffara sozinho
 		if (i == 32)
 		{
-			for (i = 1; i < 32; i++)
+			for (i = 0; i < 32; i++)
 			{
 				if (affect[i].Index == 0)
 				{
@@ -302,7 +302,7 @@ void SendAffect(int clientId)
 	{
 		// Checa se ja ha sa�de na estrutura
 		int i;
-		for (i = 1; i < 32; i++)
+		for (i = 0; i < 32; i++)
 		{
 			if (affect[i].Index == 35)
 				break;
@@ -312,7 +312,7 @@ void SendAffect(int clientId)
 		// buffado, ent�o buffara sozinho
 		if (i == 32)
 		{
-			for (i = 1; i < 32; i++)
+			for (i = 0; i < 32; i++)
 			{
 				if (affect[i].Index == 0)
 				{
@@ -331,7 +331,7 @@ void SendAffect(int clientId)
 	{
 		// Checa se ja ha sa�de na estrutura
 		int i;
-		for (i = 1; i < 32; i++)
+		for (i = 0; i < 32; i++)
 		{
 			if (affect[i].Index == 51)
 				break;
@@ -341,7 +341,7 @@ void SendAffect(int clientId)
 		// buffado, ent�o buffara sozinho
 		if (i == 32)
 		{
-			for (i = 1; i < 32; i++)
+			for (i = 0; i < 32; i++)
 			{
 				if (affect[i].Index == 0)
 				{
@@ -354,7 +354,7 @@ void SendAffect(int clientId)
 		}
 	}
 
-	for (INT32 i = 1; i < 32; i++)
+	for (INT32 i = 0; i < 32; i++)
 	{
 		if (affect[i].Index == 0 || affect[i].Time <= 0)
 			continue;
@@ -587,7 +587,7 @@ void SendScore(int clientIndex)
 	memcpy(&p.Status, &mob->Status, sizeof STRUCT_STATUS);
 
 	STRUCT_AFFECT *affect = pMob[clientIndex].Mobs.Affects;
-	for (int i = 1; i < 32; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		p.Affect[i].Index = affect[i].Index & 0xFF;
 		p.Affect[i].Time = affect[i].Time & 0xFF;
@@ -1248,6 +1248,9 @@ void SendRepurchase(int clientId)
 	if (cityZone == 5)
 		cityZone = 4;
 
+	packet.Header.PacketId = 0x3E8;
+	packet.Header.Size = sizeof p3E8;
+
 	for (int i = 0; i < 10; i++)
 	{
 		packet.Item[i].index = i + 1;
@@ -1263,8 +1266,6 @@ void SendRepurchase(int clientId)
 		packet.Item[i].sellPrice = price;
 	}
 
-	packet.Header.PacketId = 0x3E8;
-	packet.Header.Size = sizeof p3E8;
 
 	pUser[clientId].AddMessage(reinterpret_cast<BYTE*>(&packet), sizeof p3E8);
 }

@@ -42,7 +42,7 @@ bool CUser::RequestAcceptRecruit(PacketHeader* header)
 
 	if (pMob[clientId].Mobs.Player.GuildIndex != 0)
 	{
-		SendClientMessage(clientId, "Voc� ja possui uma guild");
+		SendClientMessage(clientId, "Você ja possui uma guild");
 
 		return true;
 	}
@@ -50,14 +50,14 @@ bool CUser::RequestAcceptRecruit(PacketHeader* header)
 	auto memberType = pMob[p->ClientId].Mobs.Player.GuildMemberType;
 	if (memberType != 9 && (memberType < 3 || memberType > 9))
 	{
-		SendClientMessage(clientId, "O outro jogador n�o � l�der/sub da guild");
+		SendClientMessage(clientId, "O outro jogador não é líder/sub da guild");
 
 		return true;
 	}
 
 	if (pMob[p->ClientId].Mobs.Player.Gold < 4000000)
 	{
-		SendClientMessage(clientId, "O outro jogador n�o possui o valor para recrutamento");
+		SendClientMessage(clientId, "O outro jogador não possui o valor para recrutamento");
 
 		return true;
 	}

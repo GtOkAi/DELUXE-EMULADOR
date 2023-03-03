@@ -3,6 +3,9 @@
 #include "SendFunc.h"
 #include "GetFunc.h"
 #include <tuple>
+ 
+
+
 
 bool CUser::RequestBuyShop(PacketHeader *Header)
 {
@@ -18,7 +21,7 @@ bool CUser::RequestBuyShop(PacketHeader *Header)
 	{
 		Log(clientId, LOG_ERROR, "Enviando slots com indices irregular.");
 		return false;
-	}
+	} 
 
 	// recompra de items
 	if (mobId < 1000)

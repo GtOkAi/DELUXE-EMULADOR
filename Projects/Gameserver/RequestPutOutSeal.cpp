@@ -53,7 +53,7 @@ bool CUser::RequestPutOutSeal(PacketHeader* header)
 
 	if (pMob[clientId].Mobs.Player.bStatus.Level < 279)
 	{
-		SendClientMessage(clientId, "Level m�nimo para tirar o selo do personagem � 280");
+		SendClientMessage(clientId, "Level mínimo para tirar o selo do personagem é 280");
 
 		SendItem(clientId, (SlotType)p->SrcType, p->SrcSlot, srcItem);
 		return true;
@@ -81,7 +81,7 @@ bool CUser::RequestPutOutSeal(PacketHeader* header)
 
 	if (newSlot == -1)
 	{
-		SendClientMessage(clientId, "N�o possui espa�o na sele��o de personagem");
+		SendClientMessage(clientId, "Não possui espaço na seleção de personagem");
 
 		SendItem(clientId, (SlotType)p->SrcType, p->SrcSlot, srcItem);
 		return true;

@@ -7116,21 +7116,26 @@ int TMFieldScene::FrameMove(unsigned int dwServerTime)
 				m_pMiniMapServerText->SetText(szServer, 0);
 		}
 	}
-
+	 
 	for (int i = 0; i < 32; ++i)
 	{
 		if ((unsigned char)m_pMyHuman->m_stAffect[i].Type > 0)
 		{
+			 
+			int sTime = 8 * m_pMyHuman->m_stAffect[i].Time - (dwServerTime - m_dwStartAffectTime[i]) / 1000;
 			char szVal[128]{};
-			short sTime = 8 * m_pMyHuman->m_stAffect[i].Time - (dwServerTime - m_dwStartAffectTime[i]) / 1000;
+			GetTimeString(szVal, sTime, m_pMyHuman->m_stAffect[i].Time, i);
+			int nTime = m_pMyHuman->m_stAffect[i].Time;
+
 			if (sTime <= 0)
 			{
 				if (m_pAffectL[i])
 				{
 					if (!i)
 						m_pAffect[0]->SetTextColor(0xFF000000);
-					 
-					m_pAffect[i]->SetText((char*)"ON", sTime); 
+
+					m_pAffect[i]->SetText((char*)" 0", sTime);
+
 					m_pAffectL[i]->SetVisible(0);
 				}
 
@@ -14118,16 +14123,17 @@ void TMFieldScene::SetMyHumanExp(long long unExp, int nFakeExp)
 	if (nExp >= 0 && BASE_Get3DTo2DPos(m_pMyHuman->m_vecPosition.x, m_pMyHuman->m_fHeight + 1.0f, m_pMyHuman->m_vecPosition.y, &nTX, &nTY))
 	{
 		char szStr[128]{};
-		//exp que sobe na tela
-		sprintf(szStr, "+ %d +", static_cast<unsigned int>(nExp));
+		//exp que sobe na tela 
+			sprintf(szStr, "EXP+%d", static_cast<unsigned int>(nExp)); 
+		 
 
-		m_pExtraContainer->AddChild(new TMFont3(szStr, nTX, nTY + (int)(RenderDevice::m_fHeightRatio * 80.0f), 0xFFFF8866, 0.5f, 0, 1, 1200, 0, 1));
-
+		m_pExtraContainer->AddChild(new TMFont3(szStr, nTX, nTY + (int)(RenderDevice::m_fHeightRatio * 80.0f), 0xFFFF8866, 5.5f, 0, 1, 1200, 0, 1));
+	 
 		sprintf(szStr, g_pMessageStringTable[148], nExp);
 		if (!m_bShowExp)
 		{
 			if (m_pChatListnotice)
-				m_pChatListnotice->AddItem(new SListBoxItem(szStr, 0xFFCCAAFF, 0.0f, 0.0f, 300.0f, -50.0f, 0, 0x77777777, 1, 0));
+				m_pChatListnotice->AddItem(new SListBoxItem(szStr, 0xFFCCAAFF, 100.0f, 0.0f, 300.0f, -100.0f, 0, 0x77777777, 1, 0));
 		}
 	}
 	if (nFExp > 0 && BASE_Get3DTo2DPos(m_pMyHuman->m_vecPosition.x, m_pMyHuman->m_fHeight + 1.0f, m_pMyHuman->m_vecPosition.y, &nTX, &nTY))
@@ -14144,6 +14150,7 @@ void TMFieldScene::SetMyHumanExp(long long unExp, int nFakeExp)
 				m_pChatListnotice->AddItem(new SListBoxItem(szStr, 0xFFCCAAFF, 0.0f, 0.0f, 300.0f, 16.0f, 0, 0x77777777, 1, 0));
 		}
 	}
+
 }
 
 void TMFieldScene::IncSkillSel()
@@ -17992,7 +17999,7 @@ int TMFieldScene::OnPacketCreateMob(PacketHeader* pStd)
 				pCreateMob->Equip2[i] = 0;
 			}
 
-			for (int i = 1; i < 32; ++i)
+			for (int i = 0; i < 32; ++i)
 				pCreateMob->Affect[i] = 0;
 
 			pCreateMob->Equip[0] = 230;
@@ -22527,6 +22534,7 @@ int TMFieldScene::OnPacketDelayQuit(MSG_STANDARDPARM* pStd)
 
 int TMFieldScene::OnPacketUndoSellItem(MSG_RepurchaseItems* pMsg)
 {
+
 	m_bIsUndoShoplist = 1;
 	memset(m_stRepurcharse, 0, sizeof(m_stRepurcharse));
 
@@ -22537,6 +22545,8 @@ int TMFieldScene::OnPacketUndoSellItem(MSG_RepurchaseItems* pMsg)
 	{
 		auto pItemList = new STRUCT_ITEM;
 		memcpy(pItemList, &pMsg->Repurcharse[i].stItem, sizeof(STRUCT_ITEM));
+
+		printf("\n ID %d", pMsg->Repurcharse[i].stItem.sIndex);
 
 		if (pMsg->Repurcharse[i].stItem.sIndex <= 0)
 		{
@@ -22557,6 +22567,7 @@ int TMFieldScene::OnPacketUndoSellItem(MSG_RepurchaseItems* pMsg)
 			sprintf(pItem->m_GCText.strString, "%2d", nAmount);
 			pItem->m_GCText.pFont->SetText(pItem->m_GCText.strString, pItem->m_GCText.dwColor, 0);
 		}
+
 	}
 
 	auto pREQItem = new STRUCT_ITEM;
@@ -22565,6 +22576,7 @@ int TMFieldScene::OnPacketUndoSellItem(MSG_RepurchaseItems* pMsg)
 
 	auto pItem = new SGridControlItem(0, pREQItem, 0.0f, 0.0f);
 	pItem->m_GCObj.nTextureIndex = 9;
+
 
 	pGrid->AddItem(pItem, 4, 7);
 

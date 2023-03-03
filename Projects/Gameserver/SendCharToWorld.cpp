@@ -422,7 +422,7 @@ bool CUser::SendCharToWorld(PacketHeader* Header)
 	
 	pMob[clientId].Jewel = -1;
 
-	for (int i = 1; i < 32; i++)
+	for (int i = 0; i < 32; i++)
 	{
 		if (pMob[clientId].Mobs.Affects[i].Index == 0)
 			continue;

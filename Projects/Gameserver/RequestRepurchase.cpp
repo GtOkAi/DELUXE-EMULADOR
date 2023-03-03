@@ -6,7 +6,7 @@
 bool CUser::RequestRepurchase(PacketHeader* header)
 {
 	p3E8* p = reinterpret_cast<p3E8*>(header);
-
+  
 	SendRepurchase(clientId);
 	return true;
 }

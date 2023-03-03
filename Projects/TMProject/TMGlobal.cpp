@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "TMGlobal.h"
 
 NewApp* g_pApp;

@@ -3,7 +3,7 @@
 #include "SendFunc.h"
 #include "GetFunc.h"
 #include <algorithm>
-
+ 
 bool CUser::RequestSellShop(PacketHeader *Header)
 {
 	p37A *p = (p37A*)Header;
@@ -85,9 +85,11 @@ bool CUser::RequestSellShop(PacketHeader *Header)
 		return true;
 	}
 
-	auto found = std::find_if(Repurchase.Items.begin(), Repurchase.Items.end(), [](const STRUCT_ITEM& item) {
+	auto found = std::find_if(Repurchase.Items.begin(), Repurchase.Items.end(), [](const STRUCT_ITEM& item) 
+	{
 		return item.Index <= 0 || item.Index >= MAX_ITEMLIST;
 	});
+
 
 	if(found == Repurchase.Items.end())
 	{
@@ -98,6 +100,8 @@ bool CUser::RequestSellShop(PacketHeader *Header)
 	}
 
 	(*found) = temporaryItem;
+	  
+	Repurchase.Items[p->sellSlot].Index = item->Index; 
 
 	if(mob != nullptr)
 		Log(clientId, LOG_INGAME, "Vendido item no NPC %s", mob->Mobs.Player.Name);
