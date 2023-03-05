@@ -101,8 +101,6 @@ bool CUser::RequestSellShop(PacketHeader *Header)
 
 	(*found) = temporaryItem;
 	  
-	Repurchase.Items[p->sellSlot].Index = item->Index; 
-
 	if(mob != nullptr)
 		Log(clientId, LOG_INGAME, "Vendido item no NPC %s", mob->Mobs.Player.Name);
 

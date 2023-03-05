@@ -638,7 +638,7 @@ bool CUser::PacketControl(BYTE *pBuffer, INT32 size)
 		Header->ClientId = clientId;
 
 	TimeStamp.LastReceiveTime = sServer.SecCounter;
-
+	printf("\n Servidor recebeu %X", Header->PacketId);
 	if (Header->PacketId == 0x3AE)
 		return true;
 

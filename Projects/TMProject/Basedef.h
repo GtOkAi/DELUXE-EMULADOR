@@ -1160,11 +1160,23 @@ struct  MSG_SwapItem
 };
 
 constexpr auto MSG_RepurchaseItems_Opcode = 0x3E8;
-struct MSG_RepurchaseItems
+struct MSG_RepurchaseItems_2
 {
 	PacketHeader Header;
 	int target;
 	STRUCT_REPURCHASEITEM Repurcharse[10];
+};
+
+struct MSG_RepurchaseItems
+{
+	PacketHeader Header;
+
+	struct
+	{
+		int index;
+		STRUCT_ITEM item;
+		int sellPrice;
+	} Item[10];
 };
 
 constexpr auto MSG_REQShopList_Opcode = 0x27B;
@@ -1175,7 +1187,7 @@ struct MSG_REQShopList
 };
 
 constexpr auto MSG_Buy_Opcode = 0x379;
-struct MSG_Buy
+struct MSG_Buy_2
 {
 	PacketHeader Header;
 	unsigned short TargetID;
@@ -1183,9 +1195,20 @@ struct MSG_Buy
 	short MyCarryPos;
 	int Coin;
 };
+typedef struct
+{
+	PacketHeader Header;
+
+	short TargetID;
+	short TargetCarryPos;
+	short MyCarryPos;
+	short Coin;
+	int Unknown2;
+} MSG_Buy;
+
 
 constexpr auto MSG_Sell_Opcode = 0x37A;
-struct MSG_Sell
+struct MSG_Sell_2
 {
 	PacketHeader Header;
 	unsigned short TargetID;
@@ -1193,6 +1216,12 @@ struct MSG_Sell
 	short MyPos;
 };
 
+typedef struct {
+	PacketHeader Header;
+	short TargetID;
+	short MyType;
+	int MyPos;
+} MSG_Sell;
 constexpr auto MSG_Attack_Multi_Opcode = 0x367;
 constexpr auto MSG_Attack_One_Opcode = 0x39D;
 constexpr auto MSG_Attack_Two_Opcode = 0x39E;

@@ -1235,7 +1235,7 @@ void SGridControl::BuyItem(int nCellX, int nCellY)
 	if (m_eGridType == TMEGRIDTYPE::GRID_SHOP)
 	{
 		auto pScene = static_cast<TMFieldScene*>(g_pCurrentScene);
-		auto pItem = GetItem(nCellX, nCellY);
+		auto pItem = GetItem(nCellX, nCellY); 
 		if (pItem)
 		{
 			if (nCellX == 4 && nCellY == 7)
@@ -1248,8 +1248,9 @@ void SGridControl::BuyItem(int nCellX, int nCellY)
 					ReqUndoShop.Header.PacketId = MSG_RepurchaseItems_Opcode;
 
 					auto pGridShop = pScene->m_pGridShop;
-					ReqUndoShop.target = pScene->m_sShopTarget;
+					ReqUndoShop.Item->index = pScene->m_sShopTarget;
 					SendOneMessage((char*)&ReqUndoShop, sizeof(ReqUndoShop));
+				 
 				}
 				else
 				{
@@ -1263,6 +1264,7 @@ void SGridControl::BuyItem(int nCellX, int nCellY)
 					SendOneMessage((char*)&stReqShopList, sizeof(stReqShopList));
 
 					pScene->m_dwNPCClickTime = g_pTimerManager->GetServerTime();
+					pScene->m_bIsUndoShoplist = 0;
 				}
 				return;
 			}
@@ -1803,6 +1805,7 @@ int SGridControl::SellItem(int nCellX, int nCellY, unsigned int dwFlags, unsigne
 		SGridControl::m_pSellItem = g_pCursor->m_pAttachedItem;
 		if (!SGridControl::m_pSellItem)
 			return 1;
+		printf("\n m_bIsUndoShoplist %d", pScene->m_bIsUndoShoplist);;
 		if (pScene->m_bIsUndoShoplist)
 			return 1;
 

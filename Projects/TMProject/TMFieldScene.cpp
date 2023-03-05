@@ -6361,8 +6361,10 @@ int TMFieldScene::OnPacketEvent(unsigned int dwCode, char* buf)
 		return OnPacketCNFAccountLogin(reinterpret_cast<MSG_CNFRemoveServerLogin*>(pStd));
 	case 0x114:
 		return OnPacketCNFCharacterLogin(reinterpret_cast<MSG_CNFCharacterLogin*>(pStd));
+
 	case 0x3E8:
 		return OnPacketUndoSellItem(reinterpret_cast<MSG_RepurchaseItems*>(pStd));
+
 	case 0x39B:
 		return OnPacketItemSold(reinterpret_cast<MSG_STANDARDPARM2*>(pStd));
 	case 0x339:
@@ -10935,6 +10937,7 @@ int TMFieldScene::MouseClick_NPC(int nX, int nY, D3DXVECTOR3 vec, unsigned int d
 			m_dwNPCClickTime = dwServerTime;
 			m_sShopTarget = pOver->m_dwID;
 			m_bIsUndoShoplist = 0;
+			printf("\n BUY");
 		}
 		return 1;
 	}
@@ -10965,7 +10968,7 @@ int TMFieldScene::MouseClick_NPC(int nX, int nY, D3DXVECTOR3 vec, unsigned int d
 
 			m_dwNPCClickTime = dwServerTime;
 			m_sShopTarget = pOver->m_dwID;
-			m_bIsUndoShoplist = 0;
+			m_bIsUndoShoplist = 0; 
 		}
 		return 1;
 	}
@@ -12237,6 +12240,7 @@ void TMFieldScene::SetVisibleShop(int bShow)
 		if (pSoundData)
 			pSoundData->Play(0, 0);
 	}
+	 
 }
 
 void TMFieldScene::SetVisibleCargo(int bShow)
@@ -18776,6 +18780,7 @@ int TMFieldScene::OnPacketCNFCharacterLogin(MSG_CNFCharacterLogin* pStd)
 		m_pMHPBarT->ResetBar();
 
 	g_pObjectManager->SetCurrentState(ObjectManager::TM_GAME_STATE::TM_FIELD2_STATE);
+	 
 	return 1;
 }
 
@@ -22540,22 +22545,21 @@ int TMFieldScene::OnPacketUndoSellItem(MSG_RepurchaseItems* pMsg)
 
 	auto pGrid = m_pGridShop;
 	pGrid->Empty();
-
+	 
 	for (int i = 0; i < 10; ++i)
 	{
 		auto pItemList = new STRUCT_ITEM;
-		memcpy(pItemList, &pMsg->Repurcharse[i].stItem, sizeof(STRUCT_ITEM));
+		memcpy(pItemList, &pMsg->Item[i].item, sizeof(STRUCT_ITEM));
 
-		printf("\n ID %d", pMsg->Repurcharse[i].stItem.sIndex);
 
-		if (pMsg->Repurcharse[i].stItem.sIndex <= 0)
+		if (pMsg->Item[i].item.sIndex <= 0)
 		{
 			delete pItemList;
 			continue;
 		}
 
 		auto pItem = new SGridControlItem(0, pItemList, 0.0f, 0.0f);
-		memcpy(&m_stRepurcharse[i], &pMsg->Repurcharse[i], sizeof(pMsg->Repurcharse[i]));
+		memcpy(&m_stRepurcharse[i], &pMsg->Item[i], sizeof(pMsg->Item[i]));
 
 		pGrid->AddItem(pItem, i % 5, i / 5);
 		int nAmount = BASE_GetItemAmount(pItemList);
